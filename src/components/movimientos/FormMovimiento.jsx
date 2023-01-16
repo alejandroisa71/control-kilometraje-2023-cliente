@@ -1,8 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
 import vehiculoContext from '../../context/vehiculos/vehiculoContext';
 import movimientoContext from '../../context/movimientos/movimientoContext';
+import AuthContext from '../../context/autenticacion/authContext';
 
 const FormMovimiento = () => {
+  const authContext = useContext(AuthContext);
+  const { usuario } = authContext;
+  console.log(usuario.nombre);
+  // const { nombre } = usuario;
+
   //Extraer si el vehiculo esta activo
   const vehiculosContext = useContext(vehiculoContext);
   const { vehiculo } = vehiculosContext;
@@ -27,20 +33,22 @@ const FormMovimiento = () => {
     if (movimientoseleccionado !== null) {
       guardarMovimiento(movimientoseleccionado);
     } else {
-      guardarMovimiento({final:'',detalle:''});
+      guardarMovimiento({ final: '', detalle: '' });
     }
   }, [movimientoseleccionado]);
 
   //State del formulario
   const [movimiento, guardarMovimiento] = useState({
-    // fecha: "",
+    fecha: '',
+    inicial: '5',
     final: 0,
     detalle: '',
+    chofer: '',
   });
 
   // extraer campos del movimiento
-  // const { fecha, final, detalle } = movimiento;
-  const { final, detalle } = movimiento;
+  const { fecha, inicial, final, detalle, chofer } = movimiento;
+  // const {echa final, detalle } = movimiento;
 
   //Si no hay vehiculo seleccionado
   if (!vehiculo) return null;
@@ -61,8 +69,7 @@ const FormMovimiento = () => {
     e.preventDefault();
 
     // validar
-    // if (fecha.trim() === "" || final === 0 || detalle.trim() === "") {
-    if (final === 0 || detalle.trim() === '') {
+    if (fecha.trim() === '' || final === 0 || detalle.trim() === '') {
       validarMovimiento();
       return;
     }
@@ -85,7 +92,7 @@ const FormMovimiento = () => {
 
     //reiniciar el formulario
     guardarMovimiento({
-      // fecha: "",
+      fecha: '',
       final: 0,
       detalle: '',
     });
@@ -94,7 +101,7 @@ const FormMovimiento = () => {
   return (
     <div className="formulario">
       <form onSubmit={onSubmit}>
-        {/* <div className="contenedor-input">
+        <div className="contenedor-input">
           <input
             type="date"
             className="input-text"
@@ -103,7 +110,18 @@ const FormMovimiento = () => {
             value={fecha}
             onChange={handleChange}
           />
-        </div> */}
+        </div>
+        <div className="contenedor-input">
+          <input
+            type="number"
+            className="input-text"
+            // placeholder="Kilometro Final..."
+            readOnly
+            name="inicial"
+            value={inicial}
+            // onChange={handleChange}
+          />
+        </div>
         <div className="contenedor-input">
           <input
             type="number"
@@ -122,6 +140,16 @@ const FormMovimiento = () => {
             name="detalle"
             onChange={handleChange}
             value={detalle}
+          />
+        </div>
+        <div className="contenedor-input">
+          <input
+            type="text"
+            className="input-text"
+            //  placeholder={nombre}
+            name="chofer"
+            onChange={handleChange}
+            value={chofer}
           />
         </div>
         <div className="contenedor-input">
