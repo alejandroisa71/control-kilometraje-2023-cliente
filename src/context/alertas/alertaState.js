@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import React,{ useReducer } from "react";
 import alertaContext from "./alertaContext";
 import alertaReducer from "./alertaReducer";
 import { MOSTRAR_ALERTA, OCULTAR_ALERTA } from "../../types";

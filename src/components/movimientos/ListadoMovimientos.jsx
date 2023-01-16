@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import Movimiento from "./Movimiento";
-import vehiculoContext from "../../context/vehiculos/vehiculoContext";
-import movimientoContext from "../../context/movimientos/movimientoContext";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import React, { useContext } from 'react';
+import Movimiento from './Movimiento';
+import vehiculoContext from '../../context/vehiculos/vehiculoContext';
+import movimientoContext from '../../context/movimientos/movimientoContext';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const ListadoMovimientos = () => {
-  const nodeRef = React.useRef(null)
+  const nodeRef = React.useRef(null);
   //Obtener el State de vehiculo
   const vehiculosContext = useContext(vehiculoContext);
   const { vehiculo, eliminarVehiculo } = vehiculosContext;
@@ -38,8 +38,14 @@ const ListadoMovimientos = () => {
         ) : (
           <TransitionGroup>
             {movimientosvehiculo.map((movimiento) => (
-              <CSSTransition key={movimiento._id}  nodeRef={nodeRef} in timeout={200} classNames="movimiento">
-                <Movimiento movimiento={movimiento}  />
+              <CSSTransition
+                key={movimiento.id}
+                nodeRef={nodeRef}
+                in
+                timeout={200}
+                classNames="movimiento"
+              >
+                <Movimiento movimiento={movimiento} />
               </CSSTransition>
             ))}
           </TransitionGroup>

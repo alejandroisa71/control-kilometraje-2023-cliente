@@ -1,10 +1,10 @@
-import { useContext, useEffect } from 'react';
+import React,{ useContext, useEffect } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const RutaPrivada = () => {
   const authContext = useContext(AuthContext);
-  const { autenticado,cargando, usuarioAutenticado } = authContext;
+  const { autenticado, cargando, usuarioAutenticado } = authContext;
   // console.log(autenticado);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const RutaPrivada = () => {
   if (!autenticado && !cargando) {
     return <Navigate to="/" />;
   }
-  return <Outlet />;
+  return <Outlet />
 };
 
 export default RutaPrivada;
