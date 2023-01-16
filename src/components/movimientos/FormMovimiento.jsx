@@ -1,13 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
+import moment from 'react-moment';
+import 'moment-timezone';
 import vehiculoContext from '../../context/vehiculos/vehiculoContext';
 import movimientoContext from '../../context/movimientos/movimientoContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const FormMovimiento = () => {
   const authContext = useContext(AuthContext);
-  const { usuario } = authContext;
-  console.log(usuario.nombre);
+ const{ usuario } = authContext;
+  // console.log(usuario.nombre);
   // const { nombre } = usuario;
+//   const dia =moment().format('L');
+//  console.log(dia);
+const date = new Date()
+console.log(date);
 
   //Extraer si el vehiculo esta activo
   const vehiculosContext = useContext(vehiculoContext);
@@ -39,7 +45,7 @@ const FormMovimiento = () => {
 
   //State del formulario
   const [movimiento, guardarMovimiento] = useState({
-    fecha: '',
+    fecha: date,
     inicial: '5',
     final: 0,
     detalle: '',
@@ -105,7 +111,7 @@ const FormMovimiento = () => {
           <input
             type="date"
             className="input-text"
-            placeholder="Detalle Movimiento..."
+            // placeholder="Detalle Movimiento..."
             name="fecha"
             value={fecha}
             onChange={handleChange}
@@ -146,7 +152,7 @@ const FormMovimiento = () => {
           <input
             type="text"
             className="input-text"
-            //  placeholder={nombre}
+             placeholder={'Ingrese el nombre del Chofer'}
             name="chofer"
             onChange={handleChange}
             value={chofer}
