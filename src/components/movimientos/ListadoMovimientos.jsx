@@ -39,7 +39,7 @@ const ListadoMovimientos = () => {
           <TransitionGroup>
             {movimientosvehiculo.map((movimiento) => (
               <CSSTransition
-                key={movimiento.id}
+                key={movimiento._id}
                 nodeRef={nodeRef}
                 in
                 timeout={200}

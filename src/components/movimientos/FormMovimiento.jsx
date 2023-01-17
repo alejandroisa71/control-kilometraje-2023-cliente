@@ -1,19 +1,20 @@
 import React, { useContext, useState, useEffect } from 'react';
 import moment from 'react-moment';
 import 'moment-timezone';
+import Swal from 'sweetalert2';
 import vehiculoContext from '../../context/vehiculos/vehiculoContext';
 import movimientoContext from '../../context/movimientos/movimientoContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const FormMovimiento = () => {
   const authContext = useContext(AuthContext);
- const{ usuario } = authContext;
+  const { usuario } = authContext;
   // console.log(usuario.nombre);
   // const { nombre } = usuario;
-//   const dia =moment().format('L');
-//  console.log(dia);
-const date = new Date()
-console.log(date);
+  //   const dia =moment().format('L');
+  //  console.log(dia);
+  // const date = new Date()
+  // console.log(date);
 
   //Extraer si el vehiculo esta activo
   const vehiculosContext = useContext(vehiculoContext);
@@ -45,15 +46,15 @@ console.log(date);
 
   //State del formulario
   const [movimiento, guardarMovimiento] = useState({
-    fecha: date,
-    inicial: '5',
+    fecha: '',
+    inicial: 5,
     final: 0,
     detalle: '',
     chofer: '',
   });
 
   // extraer campos del movimiento
-  const { fecha, inicial, final, detalle, chofer } = movimiento;
+  const { fecha, inicial, final, detalle,origen, chofer, destino } = movimiento;
   // const {echa final, detalle } = movimiento;
 
   //Si no hay vehiculo seleccionado
@@ -75,7 +76,8 @@ console.log(date);
     e.preventDefault();
 
     // validar
-    if (fecha.trim() === '' || final === 0 || detalle.trim() === '') {
+    // if (fecha.trim() === '' || final === 0 || detalle.trim() === '') {
+    if (final === 0 || detalle.trim() === '') {
       validarMovimiento();
       return;
     }
@@ -111,7 +113,6 @@ console.log(date);
           <input
             type="date"
             className="input-text"
-            // placeholder="Detalle Movimiento..."
             name="fecha"
             value={fecha}
             onChange={handleChange}
@@ -152,7 +153,27 @@ console.log(date);
           <input
             type="text"
             className="input-text"
-             placeholder={'Ingrese el nombre del Chofer'}
+            placeholder="Localidad Origen..."
+            name="origen"
+            onChange={handleChange}
+            value={origen}
+          />
+        </div>
+        <div className="contenedor-input">
+          <input
+            type="text"
+            className="input-text"
+            placeholder="Localidad Destino..."
+            name="chofer"
+            onChange={handleChange}
+            value={destino}
+          />
+        </div>
+        <div className="contenedor-input">
+          <input
+            type="text"
+            className="input-text"
+            placeholder="Chofer..."
             name="chofer"
             onChange={handleChange}
             value={chofer}
