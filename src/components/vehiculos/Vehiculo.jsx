@@ -11,7 +11,7 @@ const Vehiculo = ({ vehiculo }) => {
 
    //Obtener la funcion del context de movimiento
    const movimientosContext = useContext(movimientoContext);
-   const{obtenerMovimientos} = movimientosContext;
+   const{obtenerMovimientos, limpiarMovimiento } = movimientosContext;
   
 
 
@@ -19,6 +19,7 @@ const Vehiculo = ({ vehiculo }) => {
 const seleccionarVehiculo= id =>{
   vehiculoActual(id) // Fijar un vehiculo actual
    obtenerMovimientos(id) //Filtrar los movimientos cuando se de Click
+   limpiarMovimiento()
   }
  
 

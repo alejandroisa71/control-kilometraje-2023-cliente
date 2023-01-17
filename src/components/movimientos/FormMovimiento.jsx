@@ -50,11 +50,13 @@ const FormMovimiento = () => {
     inicial: 5,
     final: 0,
     detalle: '',
+    origen:'',
+    destino:'',
     chofer: '',
   });
 
   // extraer campos del movimiento
-  const { fecha, inicial, final, detalle,origen, chofer, destino } = movimiento;
+  const { fecha, inicial, final, detalle,origen, destino, chofer } = movimiento;
   // const {echa final, detalle } = movimiento;
 
   //Si no hay vehiculo seleccionado
@@ -164,7 +166,7 @@ const FormMovimiento = () => {
             type="text"
             className="input-text"
             placeholder="Localidad Destino..."
-            name="chofer"
+            name="destino"
             onChange={handleChange}
             value={destino}
           />
