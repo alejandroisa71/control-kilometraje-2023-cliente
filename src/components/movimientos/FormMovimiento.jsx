@@ -47,7 +47,7 @@ const FormMovimiento = () => {
   //State del formulario
   const [movimiento, guardarMovimiento] = useState({
     fecha: '',
-    inicial: 5,
+    inicial: 0,
     final: 0,
     detalle: '',
     origen:'',
@@ -79,7 +79,7 @@ const FormMovimiento = () => {
 
     // validar
     // if (fecha.trim() === '' || final === 0 || detalle.trim() === '') {
-    if (final === 0 || detalle.trim() === '') {
+    if (inicial ===0 ||final === 0 || detalle.trim() === ''  || origen.trim() === ''  || destino.trim() === ''  || chofer.trim() ==='') {
       validarMovimiento();
       return;
     }
@@ -89,6 +89,7 @@ const FormMovimiento = () => {
       //agregar el nuevo movimiento al state de movimientos
       movimiento.vehiculo = vehiculoActual._id;
       agregarMovimiento(movimiento);
+  
     } else {
       //actualizar movimiento existente
       actualizarMovimiento(movimiento);
@@ -97,15 +98,21 @@ const FormMovimiento = () => {
       limpiarMovimiento();
     }
 
-    //Obtener y filtrar los movimientos del vehiculo actual
-    obtenerMovimientos(vehiculoActual._id);
+    
 
     //reiniciar el formulario
     guardarMovimiento({
       fecha: '',
+      inicial:0,
       final: 0,
       detalle: '',
+      origen:'',
+      destino:'',
+      chofer:''
     });
+
+    //Obtener y filtrar los movimientos del vehiculo actual
+    obtenerMovimientos(vehiculoActual._id);
   };
 
   return (
@@ -124,11 +131,11 @@ const FormMovimiento = () => {
           <input
             type="number"
             className="input-text"
-            // placeholder="Kilometro Final..."
-            readOnly
+            placeholder="Kilometro Inicial..."
+            // readOnly
             name="inicial"
             value={inicial}
-            // onChange={handleChange}
+             onChange={handleChange}
           />
         </div>
         <div className="contenedor-input">

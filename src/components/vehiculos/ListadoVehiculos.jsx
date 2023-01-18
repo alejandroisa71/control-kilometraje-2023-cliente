@@ -41,8 +41,9 @@ const ListadoVehiculos = () => {
             in
             timeout={200}
             classNames="vehiculo"
+           
           >
-            <Vehiculo vehiculo={vehiculo} />
+            <Vehiculo vehiculo={vehiculo}  />
           </CSSTransition>
         ))}
       </TransitionGroup>

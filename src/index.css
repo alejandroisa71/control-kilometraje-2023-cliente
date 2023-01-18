@@ -61,6 +61,7 @@ a {
   border: none;
   transition: background-color .3s ease;
 }
+
 .btn:hover {
   cursor: pointer;
 }
@@ -87,6 +88,8 @@ a {
   display: block;
   background-color: transparent;
 }
+
+
 .cerrar-sesion {
   color: var(--blanco);
 }
@@ -120,22 +123,25 @@ aside  {
   border-bottom: 1px solid var(--gris2);
   border-radius: 0;
   background-color: var(--gris1);
+  text-transform: uppercase;
 }
 .formulario-nuevo-vehiculo .input-text::placeholder{
   color: var(--gris2);
 }
-.proyectos {
+.vehiculos {
   margin-top: 10rem;
 }
-.listado-proyectos li {
+.listado-vehiculos li {
   margin-bottom: 2rem;
 }
-.listado-proyectos li a {
+.listado-vehiculos li a {
   font-size: 1.4rem;
   color: var(--gris2);
   line-height: 1.5;
   font-weight: 300;
 }
+
+
 .app-header {
   display: flex;
   justify-content: space-between;
@@ -243,6 +249,7 @@ aside  {
   border-radius: .5rem;
   cursor: pointer;
   border: none;
+  
 }
 .mensaje {
   text-align: center;
